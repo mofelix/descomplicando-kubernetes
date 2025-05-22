@@ -1,0 +1,31 @@
+!--- CONTROL PLANE ---! 
+
+- ETCD - Responsavel por armazenar todos os estados do cluster; Somente o KUBE APISERVER conversa com o ETCD;
+
+- KUBE-APISERVER - Responsavel por conversar com todo o cluster, ele gerencia toda a comunicaco com o cluster, centralizando todas as informacoes e armazenando os estados no ETCD;
+
+- KUBE-SCHEDULER - Responsavel por realizar o agendamento das tarefas de funcionamento do cluster, gerencia a criancao de novos containers, pods, volume e etc, repassando as informacoes para o KUBE APISERVER;
+
+- KUBE-CONTROLLER MANAGER - Responsavel por controlar todo o estado do cluster, ele quem se comunica com todos os containers, pods, volumes e etc, repassando as informacoes para o KUBE APISERVER;
+
+!--- WORKERS ---!
+
+- KUBELET - Agente do Kubernetes dentro do node. Responsavel por conversar com o APISERVER do Control Plane;
+
+- KUBE-PROXY - Responsavel por fazer a comunicacao dos pods com o restante do cluster;
+
+!--- PORTAS ---!
+
+CONTROL PLANE:
+- KUBE-APISERVER => 6443 -> TCP
+- ETCD => 2379 - 2380 -> TCP
+- KUBELET* => 10250 -> TCP
+- KUBE-SCHEDULER => 10251 -> TCP
+- KUBE-CONTROLLER => 10252 -> TCP
+
+* KUBELET = Agente do Workers, porem controlada pelo Control Plane.
+
+WORKERS:
+- KUBE-PROXY:
+    - NODEPORT => 30000 - 32767 (PORTAS ALTAS) -> TCP
+    - WEAVENET => 6783-6784 TCP/UDP

@@ -1,0 +1,8 @@
+!--- POD ---!
+
+- Um POD contem seu proprio IP e uma SUBNET;
+
+- POD e a menor unidade do kubernetes, porem 1 pod pode ter mais de 1 container.
+- DEPLOYMENT = Responsavel por gerenciar todas as caracteristicas do POD;
+- REPLICA-SET = Responsavel por controlar a replicacao dos PODs;
+- SERVICE = Responsavel por fazer com que os PODs sejam acessiveis por fora do cluster;
